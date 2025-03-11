@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-    <style>
-    body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
-    body {font-size:16px;}
-    .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
-    .w3-half img:hover{opacity:1}
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs2015.min.css">
+    <link rel="stylesheet" href="res/css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 </head>
 <body>
     <!-- Sidebar/menu -->
@@ -22,16 +20,17 @@
     </div>
     <div class="w3-bar-block">
         <a href="#" onclick="close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
-        <a href="#showcase" onclick="close()" class="w3-bar-item w3-button w3-hover-white">Dependencies</a> 
-        <a href="#services" onclick="close()" class="w3-bar-item w3-button w3-hover-white">Set up</a> 
-        <a href="#designers" onclick="close()" class="w3-bar-item w3-button w3-hover-white">Example</a>
+        <a href="#Dependencies" onclick="close()" class="w3-bar-item w3-button w3-hover-white">Dependencies</a> 
+        <a href="#Examples" onclick="close()" class="w3-bar-item w3-button w3-hover-white">Examples</a>
+        <a href="#Documentation" onclick="close()" class="w3-bar-item w3-button w3-hover-white">Documentation</a>
+        <a href="#SetUp" onclick="close()" class="w3-bar-item w3-button w3-hover-white">Set up</a> 
     </div>
     </nav>
 
     <!-- Top menu on small screens -->
     <header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
-    <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="open()">☰</a>
-    <span>Company Name</span>
+        <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="open()">☰</a>
+        <span>Fatal Engine</span>
     </header>
 
     <!-- Overlay effect when opening sidebar on small screens -->
@@ -44,22 +43,23 @@
     <div class="w3-container" style="margin-top:80px" id="showcase">
         <h1 class="w3-jumbo"><b>Fatal Engine</b></h1>
     </div>
-    
+        
     <!-- Dependencies -->
-    <div class="w3-container" id="services" style="margin-top:25px">
+    <div class="w3-container" id="Dependencies" style="margin-top:25px">
         <h1 class="w3-xxxlarge w3-text-red"><b>Dependencies</b></h1>
         <hr style="width:50px;border:5px solid red" class="w3-round">
-        <p>We are a interior design service that focus on what's best for your home and what's best for you!</p>
+        <p>For the correct use of the Fatal Engine you will need to install the following dependencies and tools:</p>
         <ul>
             <li><a href="https://www.python.org/downloads/" title="Python 3.11">Python</a></li>
             <li><a href="https://conan.io/downloads" title="Conan C/C++ Package Manager">Conan</a></li>
             <li><a href="https://cmake.org/" title="CMake">CMake</a></li>
             <li><a href="https://visualstudio.microsoft.com/es/vs/" title="Visual Studio 2022 Community Version">Visual Studio 2022</a></li>
+            <li><a href="https://premake.github.io/download" title="Premake 5">Premake</a></li>
         </ul>
     </div>
     
     <!-- Set Up -->
-    <div class="w3-container" id="designers" style="margin-top:25px">
+    <div class="w3-container" id="SetUp" style="margin-top:25px">
         <h1 class="w3-xxxlarge w3-text-red"><b>Set Up</b></h1>
         <hr style="width:50px;border:5px solid red" class="w3-round">
         <p>The best team in the world.</p>
@@ -67,41 +67,187 @@
         dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
         incididunt ut labore et quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>
-        <p><b>Our designers are thoughtfully chosen</b>:</p>
+    </div>
+    
+    <!-- Example -->
+    <div class="w3-container" id="Examples" style="margin-top:25px">
+        <h1 class="w3-xxxlarge w3-text-red"><b>Examples</b></h1>
+        <hr style="width:50px;border:5px solid red" class="w3-round">
+        
+        <!-- Camera -->
+        <div class="w3-card w3-margin-bottom">
+            <button onclick="toggleRow('Camera')" class="w3-button w3-block w3-left-align w3-light-grey">
+                Camera <span class="toggle-icon" id="icon-example1">+</span>
+            </button>
+            <div id="Camera" class="w3-container w3-hide">
+                <pre><code class="language-cpp">
+#include &lt;glad/glad.h&gt;
+#include &lt;glm/glm.hpp&gt;
+#include &lt;glm/gtc/matrix_transform.hpp&gt;
+#include &lt;glm/gtc/type_ptr.hpp&gt;
+#include &lt;iostream&gt;
+                    
+#include "Camera.hpp" 
+#include "Input.hpp" 
+#include "window.hpp" 
+#include "esc.hpp" 
+#include "Components.hpp"
+#include "Sistems.hpp"
+#include "tools.hpp"
+                    
+const int kWidthWindow = 800;
+const int kHeightWindow = 800;
+                    
+float kLastX = kWidthWindow / 2.0f;
+float kLastY = kHeightWindow / 2.0f;
+bool kFirstMouse = true;
+                    
+int WinMain() {
+    float deltaTime = 0.0f;
+    float lastFrame = 0.0f;
+                    
+    bool* changeIntervalue = (bool*)malloc(sizeof(bool) * 4);
+                    
+    RMPH::WindowSystem PD; // sistema para crear ventana
+    RMPH::Window screen{ kWidthWindow,kHeightWindow,"ShadowMap",&PD }; // crear ventana
+                    
+    RMPH::Input inputManager{ &screen,&PD }; //gestionador de inputs
+                    
+    RMPH::ECSManager Manager; // gestionador de entidades
+                    
+    size_t cam = Manager.create_entity(); // crear entidad de camara
+                    
+    Manager.add_component_type<RMPH::TranformComponent>(); // indicar los componentes que vas a usar 
+    Manager.add_component_type<RMPH::CameraComponent>(); // indicar los componentes que vas a usar 
+                    
+    RMPH::TranformComponent  avgCam;
+                    
+    //CAMERA
+                    
+    avgCam.transform3D = RMPH::Transform3D(glm::vec3(0, 10, -5), glm::vec3(1, 1, 1), glm::vec3(45, 0, 0));
+    Manager.get_component<RMPH::TranformComponent>(cam) = avgCam; // añadir un Component Transform a la camara
+                    
+    RMPH::CameraComponent avgC;
+                    
+    avgC.cam_ = std::make_shared<RMPH::Camera>(0.001f, 45.0f, 10.0f, 1, RMPH::Camera::View::Perspectiva); 
+                    
+    Manager.get_component<RMPH::CameraComponent>(cam) = avgC; // añadir un Component Camera a la camara
+                    
+    while (screen.IsOpen()) {
+                    
+        float currentFrame = static_cast<float>(glfwGetTime());
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
+                    
+        //ejemplo de como mover la camara
+                    
+    /*  if (inputManager.IsKeyPressed(RMPH::Input::MOUSE_LEFT)) {
+                    
+            float xoffset = inputManager.MouseX() - kLastX;
+            float yoffset = kLastY - inputManager.MouseY();
+                    
+            kLastX = inputManager.MouseX();
+            kLastY = inputManager.MouseY();
+                    
+            Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.Rotate(glm::vec3(yoffset * Manager.get_component<RMPH::CameraComponent>(cam).value().cam_->MouseSensitivity, xoffset * Manager.get_component<RMPH::CameraComponent>(cam).value().cam_->MouseSensitivity, 0));
+        } else {
+            kLastX = inputManager.MouseX();
+            kLastY = inputManager.MouseY();
+        }
+                    
+        if (inputManager.IsKeyPressed(RMPH::Input::UP)) {
+            Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.Translate(Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.GetFront() * (Manager.get_component<RMPH::CameraComponent>(cam).value().cam_->MovementSpeed * deltaTime));
+        }
+                    
+        if (inputManager.IsKeyPressed(RMPH::Input::DOWN)) {
+            Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.Translate(-Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.GetFront() * (Manager.get_component<RMPH::CameraComponent>(cam).value().cam_->MovementSpeed * deltaTime));
+        }
+        if (inputManager.IsKeyPressed(RMPH::Input::LEFT)) {
+            Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.Translate(Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.GetRight() * (Manager.get_component<RMPH::CameraComponent>(cam).value().cam_->MovementSpeed * deltaTime));
+        }
+        if (inputManager.IsKeyPressed(RMPH::Input::RIGHT)) {
+            Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.Translate(-Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.GetRight() * (Manager.get_component<RMPH::CameraComponent>(cam).value().cam_->MovementSpeed * deltaTime));
+        }
+        if (inputManager.IsKeyPressed(RMPH::Input::Q)) {
+            Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.Translate(-Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.GetUp() * (Manager.get_component<RMPH::CameraComponent>(cam).value().cam_->MovementSpeed * deltaTime));
+        }
+        if (inputManager.IsKeyPressed(RMPH::Input::E)) {
+            Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.Translate(Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.GetUp() * (Manager.get_component<RMPH::CameraComponent>(cam).value().cam_->MovementSpeed * deltaTime));
+        }
+                    
+        if (inputManager.IsKeyPressed(RMPH::Input::D)) {
+            Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.Rotate(glm::vec3(0, -Manager.get_component<RMPH::CameraComponent>(cam).value().cam_->ViewSensitivity, 0));
+        }
+        if (inputManager.IsKeyPressed(RMPH::Input::A)) {
+            Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.Rotate(glm::vec3(0, Manager.get_component<RMPH::CameraComponent>(cam).value().cam_->ViewSensitivity, 0));
+        }
+        if (inputManager.IsKeyPressed(RMPH::Input::W)) {
+            Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.Rotate(glm::vec3(-Manager.get_component<RMPH::CameraComponent>(cam).value().cam_->ViewSensitivity, 0, 0));
+        }
+        if (inputManager.IsKeyPressed(RMPH::Input::S)) {
+            Manager.get_component<RMPH::TranformComponent>(cam).value().transform3D.Rotate(glm::vec3(Manager.get_component<RMPH::CameraComponent>(cam).value().cam_->ViewSensitivity, 0, 0));
+        }*/
+                    
+        screen.SwapBuffer();
+        glfwPollEvents();
+    }
+                    
+    screen.~Window();
+    PD.~WindowSystem();
+    inputManager.~Input();
+                    
+    return 0;
+}
+                </code></pre>
+            </div>
+        </div>
+
+        <!-- Light -->
+        <div class="w3-card w3-margin-bottom">
+            <button onclick="toggleRow('Light')" class="w3-button w3-block w3-left-align w3-light-grey">
+                Light <span class="toggle-icon" id="icon-example2">+</span>
+            </button>
+            <div id="Light" class="w3-container w3-hide">
+                <p>Details for Example 2...</p>
+            </div>
+        </div>
+
+        <!-- Obj -->
+        <div class="w3-card w3-margin-bottom">
+            <button onclick="toggleRow('Obj')" class="w3-button w3-block w3-left-align w3-light-grey">
+                Obj <span class="toggle-icon" id="icon-example2">+</span>
+            </button>
+            <div id="Obj" class="w3-container w3-hide">
+                <p>Details for Example 2...</p>
+            </div>
+        </div>
+        
+        <!-- Texture -->
+        <div class="w3-card w3-margin-bottom">
+            <button onclick="toggleRow('Texture')" class="w3-button w3-block w3-left-align w3-light-grey">
+                Texture <span class="toggle-icon" id="icon-example2">+</span>
+            </button>
+            <div id="Texture" class="w3-container w3-hide">
+                <p>Details for Example 2...</p>
+            </div>
+        </div>
     </div>
 
-    <!-- Example -->
-    <div class="w3-container" id="packages" style="margin-top:75px">
-        <h1 class="w3-xxxlarge w3-text-red"><b>Example</b></h1>
+    <!-- Documentation -->
+    <div class="w3-container" id="Documentation" style="margin-top:25px">
+        <h1 class="w3-xxxlarge w3-text-red"><b>Documentation</b></h1>
         <hr style="width:50px;border:5px solid red" class="w3-round">
         <p>Some text our prices. Lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure</p>
     </div>
+    
+
 
     <!-- End page content -->
     </div>
 
     <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
 
-    <script>
-    // Script to open and close sidebar
-    function open() {
-        document.getElementById("mySidebar").style.display = "block";
-        document.getElementById("myOverlay").style.display = "block";
-    }
-    
-    function close() {
-        document.getElementById("mySidebar").style.display = "none";
-        document.getElementById("myOverlay").style.display = "none";
-    }
-
-    // Modal Image Gallery
-    function onClick(element) {
-        document.getElementById("img01").src = element.src;
-        document.getElementById("modal01").style.display = "block";
-        var captionText = document.getElementById("caption");
-        captionText.innerHTML = element.alt;
-    }
-    </script>
+    <script src="./res/js/main.js"></script>
 
 </body>
 </html>
