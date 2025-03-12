@@ -4,26 +4,53 @@
     <title>Fatal Engine User Guide</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="res/img/FatalEngineLogo.png" rel="icon">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs2015.min.css">
     <link rel="stylesheet" href="res/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
+    <svg style="display: none;">
+        <!-- Camera -->
+        <symbol id="camera-icon" viewBox="0 0 24 24">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2v11z"/>
+            <circle cx="12" cy="13" r="4"/>
+        </symbol>
+        <!-- Light -->
+        <symbol id="bulb-icon" viewBox="0 0 24 24" fill="none" stroke-width="2">
+            <path d="M9 21h6" stroke-linecap="round"/>
+            <path d="M10 17h4" stroke-linecap="round"/>
+            <path d="M12 3a7 7 0 0 1 7 7c0 2.2-1.1 4.2-2.8 5.4-.8.6-1.2 1.6-1.2 2.6v1H9v-1c0-1-.4-2-1.2-2.6A7.2 7.2 0 0 1 5 10a7 7 0 0 1 7-7z"/>
+        </symbol>
+        <!-- Obj -->
+        <symbol id="obj-icon" viewBox="0 0 24 24" fill="none" stroke-width="1">
+            <polygon points="4,8 12,3 20,8 12,13" stroke-linejoin="round"/>
+            <polygon points="4,8 4,16 12,21 12,13" stroke-linejoin="round"/>
+            <polygon points="20,8 20,16 12,21 12,13" stroke-linejoin="round"/>
+        </symbol>
+        <!-- Texture -->
+        <symbol id="image-icon" viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="3" width="20" height="18" rx="2" ry="2" fill="none"/>
+            <circle cx="8" cy="8" r="2"/>
+            <path d="M21 15l-5-5-4 4-3-3-5 5" stroke-width="1" fill="none"/>
+        </symbol>
+    </svg>
 </head>
 <body>
     <!-- Sidebar/menu -->
-    <nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+    <nav class="sidebar red collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
     <div class="w3-container">
+        <img src="res/img/FatalEngineLogo.png" alt="Fatal Engine Logo" class="sidebar-logo">
         <h3 class="w3-padding-64"><b>Fatal Engine</b></h3>
     </div>
     <div class="w3-bar-block">
         <a href="#" onclick="close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
         <a href="#Dependencies" onclick="close()" class="w3-bar-item w3-button w3-hover-white">Dependencies</a> 
+        <a href="#SetUp" onclick="close()" class="w3-bar-item w3-button w3-hover-white">Set up</a> 
         <a href="#Examples" onclick="close()" class="w3-bar-item w3-button w3-hover-white">Examples</a>
         <a href="#Documentation" onclick="close()" class="w3-bar-item w3-button w3-hover-white">Documentation</a>
-        <a href="#SetUp" onclick="close()" class="w3-bar-item w3-button w3-hover-white">Set up</a> 
     </div>
     </nav>
 
@@ -39,8 +66,13 @@
     <!-- !PAGE CONTENT! -->
     <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
+    <!-- Version Header -->
+    <div class="w3-container" style="margin-top:5px;" align="end">
+        <h2><b>v0.01</b></h1>
+    </div>
+    
     <!-- Header -->
-    <div class="w3-container" style="margin-top:80px" id="showcase">
+    <div class="w3-container" style="margin-top:30px" id="showcase">
         <h1 class="w3-jumbo"><b>Fatal Engine</b></h1>
     </div>
         
@@ -62,11 +94,16 @@
     <div class="w3-container" id="SetUp" style="margin-top:25px">
         <h1 class="w3-xxxlarge w3-text-red"><b>Set Up</b></h1>
         <hr style="width:50px;border:5px solid red" class="w3-round">
-        <p>The best team in the world.</p>
-        <p>We are lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </p>
+        <p>For a correct installation, you need to follow this instructions:</p>
+        <code style="font-size: 15px;">
+            <ol>
+                <li>Download the last version of the engine from the official <a href="" target="_blank" title="Fatal Engine">Fatal Engine Github repository</a>.</li>
+                <li>Unzip the package.</li>
+                <li>Open the <b><i>CMD</i></b> or the <b><i>Developer Command Prompt for VS</i></b> and go to the following route: "<code style="background-color: rgb(56, 56, 56); border-radius: 3px; color: white;">tools\</code>".</li>
+                <li>Execute the file called "<code style="background-color: rgb(56, 56, 56); border-radius: 3px; color: white;">gendeps.bat</code>", once the proccess finishes you will see "<code style="background-color: rgb(56, 56, 56); border-radius: 3px; color: white;">build\</code>" on the main folder of the project.</li>
+                <li>Enter the "<code style="background-color: rgb(56, 56, 56); border-radius: 3px; color: white;">build\</code>" directory and open "<code style="background-color: rgb(56, 56, 56); border-radius: 3px; color: white;">FatalEngine.sln</code>" to use the engine.</li>
+            </ol>
+        </code>
     </div>
     
     <!-- Example -->
@@ -76,11 +113,14 @@
         
         <!-- Camera -->
         <div class="w3-card w3-margin-bottom">
-            <button onclick="toggleRow('Camera')" class="w3-button w3-block w3-left-align w3-light-grey">
-                Camera <span class="toggle-icon" id="icon-example1">+</span>
+            <button onclick="toggleRow('Camera')" class="w3-light-grey collapsible">
+                <svg class="architecture-icon">
+                    <use href="#camera-icon"></use>
+                </svg>
+                <b class="icon-title">Camera</b> <span class="toggle-icon" id="icon-example1">+</span>
             </button>
             <div id="Camera" class="w3-container w3-hide">
-                <pre><code class="language-cpp">
+                <pre><code class="language-cpp" style="border-radius: 10px;">
 #include &lt;glad/glad.h&gt;
 #include &lt;glm/glm.hpp&gt;
 #include &lt;glm/gtc/matrix_transform.hpp&gt;
@@ -204,8 +244,11 @@ int WinMain() {
 
         <!-- Light -->
         <div class="w3-card w3-margin-bottom">
-            <button onclick="toggleRow('Light')" class="w3-button w3-block w3-left-align w3-light-grey">
-                Light <span class="toggle-icon" id="icon-example2">+</span>
+            <button onclick="toggleRow('Light')" class="w3-light-grey collapsible">
+                <svg class="architecture-icon">
+                    <use href="#bulb-icon"></use>
+                </svg>
+                <b class="icon-title">Light</b> <span class="toggle-icon" id="icon-example2">+</span>
             </button>
             <div id="Light" class="w3-container w3-hide">
                 <p>Details for Example 2...</p>
@@ -214,8 +257,11 @@ int WinMain() {
 
         <!-- Obj -->
         <div class="w3-card w3-margin-bottom">
-            <button onclick="toggleRow('Obj')" class="w3-button w3-block w3-left-align w3-light-grey">
-                Obj <span class="toggle-icon" id="icon-example2">+</span>
+            <button onclick="toggleRow('Obj')" class="w3-light-grey collapsible">
+                <svg class="architecture-icon">
+                    <use href="#obj-icon"></use>
+                </svg>
+                <b class="icon-title">Obj</b> <span class="toggle-icon" id="icon-example2">+</span>
             </button>
             <div id="Obj" class="w3-container w3-hide">
                 <p>Details for Example 2...</p>
@@ -224,8 +270,11 @@ int WinMain() {
         
         <!-- Texture -->
         <div class="w3-card w3-margin-bottom">
-            <button onclick="toggleRow('Texture')" class="w3-button w3-block w3-left-align w3-light-grey">
-                Texture <span class="toggle-icon" id="icon-example2">+</span>
+            <button onclick="toggleRow('Texture')" class="w3-light-grey collapsible">
+                <svg class="architecture-icon">
+                    <use href="#image-icon"></use>
+                </svg>
+                <b class="icon-title">Texture</b> <span class="toggle-icon" id="icon-example2">+</span>
             </button>
             <div id="Texture" class="w3-container w3-hide">
                 <p>Details for Example 2...</p>
@@ -237,7 +286,13 @@ int WinMain() {
     <div class="w3-container" id="Documentation" style="margin-top:25px">
         <h1 class="w3-xxxlarge w3-text-red"><b>Documentation</b></h1>
         <hr style="width:50px;border:5px solid red" class="w3-round">
-        <p>Some text our prices. Lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure</p>
+        <p>If you have any doubt about the engine and the library you can consult the official documentation here.</p>
+        <a href="https://goldsolacepvg.github.io/FatalEngineDocumentation/" target="_blank" title="Fatal Engine Documentation C++">
+            <img src="/res/img/DocLogo.jpg" class="doc_logo">
+        </a>
+        <a href="" target="_blank" title="Fatal Engine Documentation Lua (Soon)">
+            <img src="/res/img/DocLogo.jpg" class="doc_logo_lua">
+        </a>
     </div>
     
 
@@ -245,7 +300,7 @@ int WinMain() {
     <!-- End page content -->
     </div>
 
-    <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
+    <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Made by <a title="Fatal Team" target="_blank" class="w3-hover-opacity">Fatal Team</a></p></div>
 
     <script src="./res/js/main.js"></script>
 
